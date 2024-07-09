@@ -52,6 +52,19 @@ public static class PostgresqlExtensions
         => PostgresqlDatabase(new PostgresqlConnectionManager(connectionString, certificate), schema);
 
     /// <summary>
+    /// Creates an upgrader for PostgreSQL databases that use SSL.
+    /// </summary>
+    /// <param name="supported">Fluent helper type.</param>
+    /// <param name="connectionString">PostgreSQL database connection string.</param>
+    /// <param name="schema">The schema in which to check for changes</param>
+    /// <param name="connectionOptions">Connection options to set SSL parameters</param>
+    /// <returns>
+    /// A builder for a database upgrader designed for PostgreSQL databases.
+    /// </returns>
+    public static UpgradeEngineBuilder PostgresqlDatabase(this SupportedDatabases supported, string connectionString, string schema, PostgresqlConnectionOptions connectionOptions)
+        => PostgresqlDatabase(new PostgresqlConnectionManager(connectionString, connectionOptions), schema);
+
+    /// <summary>
     /// Creates an upgrader for PostgreSQL databases.
     /// </summary>
     /// <param name="supported">Fluent helper type.</param>
